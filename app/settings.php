@@ -36,7 +36,7 @@ return [
         'eloquent' => [
             'driver' => 'sqlite',
             'host' => 'localhost',
-            'database' => '../db/slim_starter.sqlite',
+            'database' => __DIR__ . '/../db/slim_starter.sqlite',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',

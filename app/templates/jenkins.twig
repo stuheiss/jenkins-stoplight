@@ -14,7 +14,7 @@
 			{% for x,ent in group %}
 			<td>
 				<div style="text-align: center;">
-					<img src="{{ ent.color }}" height="50%" width="50%">
+					<img src="{{ ent.color }}" height="40%" width="40%">
 					<br>
 					<span style="border:1px solid red;">
 						{{ ent.name }}<br>
@@ -30,6 +30,9 @@
 	</table>
     <p>
         Updated at: {{ timestamp }}
+        {% if refresh != '' %}
+        (refresh in {{ refresh }} seconds)
+        {% endif %}
     </p>
 
     {{debug_bar()}}

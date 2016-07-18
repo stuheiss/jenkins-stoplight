@@ -18,3 +18,4 @@ $app->get('/jenkins/[{name}]', 'App\JenkinsController:jenkins')->setName('jenkin
 
 $app->get('/jenkins', 'App\JenkinsController:jenkins')->setName('jenkins');
 
+$app->get('/hello/[{name}]', 'App\JenkinsController:hello')->setName('hello');

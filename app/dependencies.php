@@ -75,13 +75,16 @@ $container['jenkins'] = function ($c) {
 };
 
 $container['stoplights'] = array(
-    'green'  => '/img/green-traffic-light.png',
-    'blue'   => '/img/green-traffic-light.png',
-    'red'    => '/img/red-traffic-light.png',
-    'yellow' => '/img/yellow-traffic-light.png',
+    'default' => '/img/animated-traffic-light-image-0034.gif',
+    'green'   => '/img/green-traffic-light.png',
+    'blue'    => '/img/green-traffic-light.png',
+    'red'     => '/img/red-traffic-light.png',
+    'yellow'  => '/img/yellow-traffic-light.png',
 );
 
 $container['jenkins_servers'] = array(
     'jenkins'  => new \JenkinsKhan\Jenkins('http://jenkins.example.com:8080'),
     'jenkins2' => new \JenkinsKhan\Jenkins('http://jenkins2.example.com:8080')
 );
+
+$container['refresh'] = 15;
