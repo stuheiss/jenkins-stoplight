@@ -1,40 +1,55 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>{% block titulo %}Welcome!{% endblock %}</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <title>{% block titulo %}Welcome!{% endblock %}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {{debug_head()}}
-	</head>
-	<body>
+    </head>
+    <body>
 
-	<table>
-		{% for x,group in results|batch(4) %}
-		<tr>
-			{% for x,ent in group %}
-			<td>
-				<div style="text-align: center;">
-					<img src="{{ ent.color }}" height="40%" width="40%">
-					<br>
-					<span style="border:1px solid red;">
-						{{ ent.name }}<br>
-						{{ ent.timestamp }}<br>
-						{{ ent.result }} (bld {{ ent.number }})<br>
+    <table>
+        {% for x,group in results|batch(4) %}
+        <tr>
+            {% for x,ent in group %}
+            <td>
+                <div style="text-align: center;">
+                    <img src="{{ ent.color }}" height="40%" width="40%">
+                    <br>
+                    <span style="border:1px solid red;">
+                        {{ ent.name }}<br>
+                        {{ ent.timestamp }}<br>
+                        {{ ent.result }} (bld {{ ent.number }})<br>
                         <br>
-					</span>
-				</div>
-			</td>
-			{% endfor %}
-		</tr>
-		{% endfor %}
-	</table>
+                    </span>
+                </div>
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
     <p>
-        Updated at: {{ timestamp }}
-        {% if refresh != '' %}
-        (refresh in {{ refresh }} seconds)
-        {% endif %}
+    <table>
+      <tr>
+        <td>
+          <img src="/img/superhero.svg" width="100" height="100">
+        </td>
+        <td>
+          {% for k,v in summary %}
+            {{ k }} {{ v }}
+          {% endfor %}
+          <br>
+          <br>
+          Updated at: {{ timestamp }}
+          <br>
+          {% if refresh != '' %}
+          (refresh in {{ refresh }} seconds)
+          {% endif %}
+        </td>
+      </tr>
+    </table>
     </p>
 
     {{debug_bar()}}
-	</body>
+    </body>
 </html>

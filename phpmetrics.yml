@@ -1,0 +1,19 @@
+default:
+#    rules:
+#        cyclomaticComplexity: [ 10, 6, 2 ]
+
+#    failure: average.maintainabilityIndex < 50 or sum.loc > 10000
+
+    path:
+        directory: .
+        extensions: php
+        exclude: public|vendor|tests|app|var|src/Controller|src/Model/User.php|src/Util/DebuggerService.php|src/Util/EloquentService.php|src/Util/SwiftMailerService.php|src/Util/TwigExtension.php
+
+    logging:
+        report:
+            xml:    ./log/phpmetrics.xml
+            html:   ./log/phpmetrics.html
+            csv:    ./log/phpmetrics.csv
+
+        violations:
+            xml:    ./log/violations.xml

@@ -8,8 +8,23 @@
 
 namespace App\Util;
 
+/**
+ * Jenkins service provider
+ *
+ * query jenkins servers and return information
+ */
 class JenkinsService
 {
+    private $results = array();
+
+    /**
+     * getResults returns the combined results from all configured jenkins jobs
+     *
+     * @param $jenkins_servers
+     * @param $stoplights string array
+     *
+     * @return array
+     */
     public function getResults($jenkins_servers, $stoplights)
     {
         $results=array();
@@ -29,6 +44,27 @@ class JenkinsService
                 );
             }
         }
+        $this->results = $results;
         return $results;
+    }
+
+    /**
+     * getSummary returns summary of results from all configured jenkins jobs
+     *
+     * @return array
+     */
+    public function getSummary()
+    {
+        $summary = array();
+        if (!is_null($this->results)) {
+            foreach ($this->results as $result) {
+                if (array_key_exists($result['result'], $summary)) {
+                    $summary[$result['result']]++;
+                } else {
+                    $summary[$result['result']] = 1;
+                }
+            }
+        }
+        return $summary;
     }
 }

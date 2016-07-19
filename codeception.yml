@@ -33,4 +33,4 @@ coverage:
     include:
         - src/*
     exclude:
-        - src/cache/*
+        - src/Controller/*
