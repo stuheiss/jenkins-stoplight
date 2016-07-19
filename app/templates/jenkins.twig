@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>{% block titulo %}Welcome!{% endblock %}</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {{debug_head()}}
-    </head>
-    <body>
+{% extends "layout.twig" %}
+
+{% block content %}
 
     <table>
         {% for x,group in results|batch(4) %}
@@ -50,6 +44,4 @@
     </table>
     </p>
 
-    {{debug_bar()}}
-    </body>
-</html>
+{% endblock content %}

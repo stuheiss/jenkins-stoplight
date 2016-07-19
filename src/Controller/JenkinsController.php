@@ -17,7 +17,7 @@ final class JenkinsController extends AbstractController
             'name' => $name,
             'results' => $results,
             'summary' => $summary,
-            'timestamp' => date('d/m/y H:m:s'),
+            'timestamp' => date('m/d/y H:m:s'),
             'refresh' => ($refresh ? (string)$refresh : '')
         ]);
     }
