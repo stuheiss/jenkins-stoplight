@@ -3,3 +3,4 @@
 /db/
 tests/_output/*
 .DS_Store
+*.sw?

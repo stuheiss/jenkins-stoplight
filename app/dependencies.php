@@ -82,9 +82,20 @@ $container['stoplights'] = array(
     'yellow'  => '/img/yellow-traffic-light.png',
 );
 
+$container['refresh'] = 15;
+
+$container['jenkins_face'] = array(
+    'pancho' => '/img/CbLiqlfp.jpg',
+    'butler' => '/img/butler.png',
+    'fire'   => '/img/fire-jenkins.png',
+    'chef'   => '/img/jenkins-chef.jpg',
+    'master' => '/img/master-jenkins.svg',
+    'ninja'  => '/img/ninjenkins.svg',
+    'super'  => '/img/superhero.svg',
+    'cool'   => '/img/view-filters.png',
+);
+
 $container['jenkins_servers'] = array(
     'jenkins'  => new \JenkinsKhan\Jenkins('http://jenkins.example.com:8080'),
     'jenkins2' => new \JenkinsKhan\Jenkins('http://jenkins2.example.com:8080')
 );
-
-$container['refresh'] = 15;

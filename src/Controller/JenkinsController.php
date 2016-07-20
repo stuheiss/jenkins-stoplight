@@ -13,12 +13,15 @@ final class JenkinsController extends AbstractController
 
         $name = isset($params['name'])? $params['name']: 'jenkins user';
         $response_arg = $refresh ? $response->withHeader('Refresh', (string)$refresh) : $response;
+        $faces = array_values($this->jenkins_face);
+        $face = $faces[rand(0, count($faces) - 1)];
         return $this->view->render($response_arg, 'jenkins.twig', [
-            'name' => $name,
-            'results' => $results,
-            'summary' => $summary,
+            'name'      => $name,
+            'results'   => $results,
+            'summary'   => $summary,
             'timestamp' => date('m/d/y H:m:s'),
-            'refresh' => ($refresh ? (string)$refresh : '')
+            'refresh'   => ($refresh ? (string)$refresh : ''),
+            'face'      => $face,
         ]);
     }
 }
