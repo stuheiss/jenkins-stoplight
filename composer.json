@@ -14,7 +14,8 @@
         "illuminate/events": "^5.1",
         "maximebf/debugbar": "^1.11",
         "swiftmailer/swiftmailer": "^5.4",
-        "jenkins-khan/jenkins-api": "dev-master"
+        "jenkins-khan/jenkins-api": "dev-master",
+        "vlucas/phpdotenv": "^2.3"
     },
     "autoload": {
         "psr-4": {

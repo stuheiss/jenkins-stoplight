@@ -29,18 +29,20 @@ class JenkinsService
     {
         $results=array();
 
-        foreach ($jenkins_servers as $jenkins) {
+        foreach ($jenkins_servers as $server => $jenkins) {
             foreach ($jenkins->getJobs() as $job) {
                 $name = $job->getName();
                 $builds = $job->getBuilds();
                 // display the latest build which will be the first element in the builds array
                 $build = $builds[0];
-                $results[$name] = array(
-                    'name' => $name,
-                    'number' => $build->getNumber(),
-                    'result' => $build->getResult(),
+                $host = explode('.', $server)[0];
+                $results["$server-$name"] = array(
+                    'host'      => $host,
+                    'name'      => $name,
+                    'number'    => $build->getNumber(),
+                    'result'    => $build->getResult(),
                     'timestamp' => date('m/d/y H:i:s', $build->getTimestamp()),
-                    'color' => array_key_exists($job->getColor(), $stoplights) ? $stoplights[$job->getColor()] : $stoplights['default'],
+                    'color'     => array_key_exists($job->getColor(), $stoplights) ? $stoplights[$job->getColor()] : $stoplights['default'],
                 );
             }
         }

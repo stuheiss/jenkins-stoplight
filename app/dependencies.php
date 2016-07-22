@@ -59,7 +59,7 @@ $container['App\JenkinsController'] = function ($c) {
 };
 
 // csfr protection
-$container['csrf'] = function ($c) {
+$container['csrf'] = function () {
     return new \Slim\Csrf\Guard();
 };
 
@@ -69,9 +69,8 @@ $container['flash'] = function () {
 };
 
 // jenkins
-$container['jenkins'] = function ($c) {
-    return new \App\Util\JenkinsService(
-    );
+$container['jenkins'] = function () {
+    return new \App\Util\JenkinsService();
 };
 
 $container['stoplights'] = array(
@@ -95,7 +94,12 @@ $container['jenkins_face'] = array(
     'cool'   => '/img/view-filters.png',
 );
 
-$container['jenkins_servers'] = array(
-    'jenkins'  => new \JenkinsKhan\Jenkins('http://jenkins.example.com:8080'),
-    'jenkins2' => new \JenkinsKhan\Jenkins('http://jenkins2.example.com:8080')
-);
+$container['jenkins_servers'] = function () {
+    $jenkins_servers = array();
+    foreach (explode(',', getenv('JENKINS_SERVERS')) as $url) {
+        if (preg_match('/^https?:\/\/([^\/:]+)/', $url, $matches)) {
+            $jenkins_servers[$matches[1]] = new \JenkinsKhan\Jenkins($url);
+        }
+    }
+    return $jenkins_servers;
+};

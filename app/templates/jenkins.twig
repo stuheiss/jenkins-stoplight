@@ -3,7 +3,7 @@
 {% block content %}
 
     <table>
-        {% for x,group in results|batch(4) %}
+        {% for x,group in results|batch(5) %}
         <tr>
             {% for x,ent in group %}
             <td>
@@ -14,6 +14,7 @@
                         {{ ent.name }}<br>
                         {{ ent.timestamp }}<br>
                         {{ ent.result }} (bld {{ ent.number }})<br>
+                        {{ ent.host }}<br>
                         <br>
                     </span>
                 </div>

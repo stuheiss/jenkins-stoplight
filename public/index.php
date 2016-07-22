@@ -4,6 +4,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
 
+$dotenv = new Dotenv\Dotenv(__DIR__ . '/../app/config');
+$dotenv->load();
+
 // Instantiate the app
 $settings = require __DIR__ . '/../app/settings.php';
 $app = new \Slim\App($settings);
