@@ -5,3 +5,7 @@ serve:
 	@echo '  http://localhost:8080/query-db'
 	@echo '  http://localhost:8080/send-mail'
 	php -S localhost:8080 -t public
+coverage:
+	codecept run unit --coverage --coverage-html
+metrics:
+	phpmetrics --config=phpmetrics.yml

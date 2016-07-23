@@ -41,44 +41,42 @@ class JenkinsServiceTest extends \Codeception\Test\Unit
     // tests
     public function testGetResults()
     {
-        $timeval = strtotime('Jan 1 2000');
-        $name = 'Jenkins-Job-master';
-        $number = 42;
-        $result = 'SUCCESS';
-        $color = 'blue';
+        $timeval   = strtotime('Jan 1 2000');
+        $name      = 'Jenkins-Job-master';
+        $number    = 42;
+        $result    = 'SUCCESS';
+        $color     = 'blue';
         $timestamp = '01/01/00 00:00:00';
 
         $stoplights = $this->container['stoplights'];
 
-        /***
-        $jenkins_servers = $this->container['jenkins_servers'];
-        $this->assertEquals(array('jenkins', 'jenkins2'), array_keys($jenkins_servers));
-        foreach ($jenkins_servers as $j) {
-            $this->assertEquals('JenkinsKhan\Jenkins', get_class($j));
-        }
-        ***/
-
         // setup mocks
         $service = m::mock('\JenkinsKhan\Jenkins');
-        $job = m::mock('\JenkinsKhan\Jenkins\Job');
+        $job     = m::mock('\JenkinsKhan\Jenkins\Job');
+        $build   = m::mock('\JenkinsKhan\Jenkins\Build');
+
         $service->shouldReceive('getJobs')->andReturn(array($job));
+
         $job->shouldReceive('getName')->andReturn($name);
-        $build = m::mock('\JenkinsKhan\Jenkins\Build');
+        $job->shouldReceive('getBuilds')->andReturn(array($build));
+        $job->shouldReceive('getColor')->andReturn($color);
+
         $build->shouldReceive('getNumber')->andReturn($number);
         $build->shouldReceive('getResult')->andReturn($result);
         $build->shouldReceive('getTimestamp')->andReturn($timeval);
-        $job->shouldReceive('getBuilds')->andReturn(array($build));
-        $job->shouldReceive('getColor')->andReturn($color);
-        $jenkins_servers = array($service);
+
+        $jenkins_hostname = 'superjenkins';
+        $jenkins_servers  = array($jenkins_hostname => $service);
 
         // test JenkinsService::getResults()
         $results = $this->jenkinsService->getResults($jenkins_servers, $stoplights);
-        $this->assertEquals(array($name => array(
-            'name' => $name,
-            'number' => $number,
-            'result' => $result,
+        $this->assertEquals(array("{$jenkins_hostname}-{$name}" => array(
+            'host'      => $jenkins_hostname,
+            'name'      => $name,
+            'number'    => $number,
+            'result'    => $result,
             'timestamp' => $timestamp,
-            'color' => $stoplights[$color],
+            'color'     => $stoplights[$color],
         )), $results);
     }
 }
