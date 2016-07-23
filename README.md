@@ -15,7 +15,7 @@ Run the app with php 5.4 or newer built in server.
 Feel free to use a real webserver :-)
 
 Open your browser to:
-```http://localhost:8080/jenkins/refresh/15```
+**http://localhost:8080/jenkins/refresh/15**
 
 Your screen will refresh every 15 seconds.
 
@@ -28,9 +28,7 @@ Your screen will refresh every 15 seconds.
 Create app/configs/.env (see app/configs/.env.sample) and add your jenkins server urls as a comma separated list to JENKINS_SERVERS.
 
 Example:
-
-```JENKINS_SERVERS="url1,url2,urlN"```
-
+**JENKINS_SERVERS="url1,url2,urlN"**
 
 Ensure `var/` exists and is web writeable.
 
